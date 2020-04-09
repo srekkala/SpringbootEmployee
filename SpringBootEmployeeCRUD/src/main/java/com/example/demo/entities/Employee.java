@@ -10,13 +10,14 @@ import javax.persistence.Table;
 public class Employee {
 	@Id
 	@GeneratedValue
-private int empId;
+private long empId;
 private String empName;
 private long empSal;
-public int getEmpId() {
+
+public long getEmpId() {
 	return empId;
 }
-public void setEmpId(int empId) {
+public void setEmpId(long empId) {
 	this.empId = empId;
 }
 public String getEmpName() {

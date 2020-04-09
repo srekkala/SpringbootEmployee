@@ -19,7 +19,7 @@ import com.example.demo.entities.Employee;
 import com.example.demo.service.EmployeeServiceI;
 
 @RestController
-@RequestMapping(value="/employee")
+@RequestMapping(value="employee")
 @CrossOrigin("http://localhost:4200")
 public class UserRestController {
 	@Autowired
@@ -35,7 +35,7 @@ public class UserRestController {
 	}
 	
 	@GetMapping(path="/getdetails/{empId}")
-	public ResponseEntity<Employee> findEmployeeById(@PathVariable("empId") int empId) {
+	public ResponseEntity<Employee> findEmployeeById(@PathVariable("empId") long empId) {
 		Employee emp=service.findEmployeeById(empId);
 		if (emp == null) {
             throw new EmployeeNotFoundException("employee not found for id=" + empId);
@@ -56,7 +56,7 @@ public class UserRestController {
 	}
 	
 	@DeleteMapping(path="/delete/{empId}")
-	public String deleteEmployee(@PathVariable("empId") int empId) {
+	public String deleteEmployee(@PathVariable("empId") Long empId) {
 		service.deleteEmployee(empId);
 		return "Deleted";
 	}

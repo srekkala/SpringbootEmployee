@@ -7,12 +7,12 @@ public interface EmployeeServiceI {
 
     Employee CreateEmployee(Employee emp);
     
-	Employee findEmployeeById(int empId);
+	Employee findEmployeeById(long empId);
 	
 	Employee updateEmployee(Employee emp); 
 	
 	List<Employee> findAllEmployees();
 	
-	void deleteEmployee(int empId);
+	void deleteEmployee(long empId);
 	
 }

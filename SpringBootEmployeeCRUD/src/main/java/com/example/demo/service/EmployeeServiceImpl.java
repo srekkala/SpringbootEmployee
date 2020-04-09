@@ -2,13 +2,13 @@ package com.example.demo.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+
 import com.example.demo.dao.EmployeeDaoI;
 import com.example.demo.entities.Employee;
-import javax.persistence.EntityManager;
 
 @Service
-@Transactional
+
 public class EmployeeServiceImpl implements EmployeeServiceI{
 	@Autowired
 	private EmployeeDaoI dao;
@@ -17,7 +17,7 @@ public class EmployeeServiceImpl implements EmployeeServiceI{
 		return dao.CreateEmployee(emp);
 	}
 	
-	public Employee findEmployeeById(int empId) {
+	public Employee findEmployeeById(long empId) {
 		return dao.findEmployeeById(empId);
 	}
 	public Employee updateEmployee(Employee emp) {
@@ -26,7 +26,7 @@ public class EmployeeServiceImpl implements EmployeeServiceI{
 	public List<Employee> findAllEmployees(){
 		 return dao.findAllEmployees();
 	}
-	public void deleteEmployee(int empId) {
+	public void deleteEmployee(long empId) {
 		 dao.deleteEmployee(empId);
 	}
 }

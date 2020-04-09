@@ -3,9 +3,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.example.demo.entities.Employee;
 
 @Repository
@@ -21,17 +20,18 @@ public class EmployeeDaoImpl implements EmployeeDaoI {
 	}
 
 	@Override
-	public Employee findEmployeeById(int empId) {
+	public Employee findEmployeeById(long empId) {
 		return entityManager.find(Employee.class,empId);
 	}
 
 	@Override
 	public Employee updateEmployee(Employee employee) {
-		//Employee emp=new Employee();
-		employee.setEmpName(employee.getEmpName());
-		employee.setEmpSal(employee.getEmpSal());
-		employee=entityManager.merge(employee);
-		return employee;
+		//Employee emp=entityManager.find(Employee.class,employee.getEmpId());
+		Employee emp=findEmployeeById(employee.getEmpId());
+		emp.setEmpName(employee.getEmpName());
+		emp.setEmpSal(employee.getEmpSal());
+		emp=entityManager.merge(emp);
+		return emp;
 	}
 	
 	@Override
@@ -41,7 +41,7 @@ public class EmployeeDaoImpl implements EmployeeDaoI {
 		return list;
 	}
 	@Override
-	public void deleteEmployee(int empId) {
+	public void deleteEmployee(long empId) {
 		Employee emp=entityManager.find(Employee.class, empId);
 		entityManager.remove(emp);
 	}
